@@ -1,0 +1,43 @@
+<div class="headerTop">
+		
+	<div class="topmenu">
+		<ul>
+			<li class="left">
+			<c:if test="${not empty  sessionScope.currentSessionUser}">
+				<a  href="/brocanterecherche/annonces" title="Publier une annonce">Accueil</a>
+				</c:if>
+				<c:if test="${not empty  sessionScope.currentSessionUser}">
+					<a  href="/brocanterecherche/mesAnnonces" title="Afficher mes annonces">Mes annonces</a>
+				</c:if>
+				
+				 <c:if test="${not empty  sessionScope.currentSessionUser}">
+					<a  href="/brocanterecherche/create" title="Publier une annonce">Ajouter une annonce</a>
+				</c:if>
+				
+				
+				<c:choose>
+                <c:when test="${not empty  sessionScope.currentSessionUser}">
+                	<a href="/brocanterecherche/logout" title="logout">Déconnecter ${sessionScope.currentSessionUser.getFirstName()} ${sessionScope.currentSessionUser.getLastName()}</a>
+                </c:when>
+				<c:otherwise>
+					<a href="/brocanterecherche/login" title="logout">Connexion</a>
+					<a href="/brocanterecherche/createAccount" title="Forgot password">Inscription</a>
+				</c:otherwise>
+				</c:choose>
+				
+			</li>
+			<li class="right">
+
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="header" style="margin-bottom:0px">
+	<ul>
+		<li>
+			<a href="/brocanterecherche/annonces" title="PETITES ANNONCES">BROCANTE RECHERCHE</a>
+		</li>
+	</ul>
+</div>

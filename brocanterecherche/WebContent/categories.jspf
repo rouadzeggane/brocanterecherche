@@ -1,0 +1,15 @@
+
+
+
+<select  class="searchBox" name="nomCategorie" id="subcatid">
+				<option value="">Categories</option>
+					<c:forEach items="${requestScope.categories}" var="cat">
+	
+						<option style="background-color:#dcdcc3;" value="${cat.getIdCat()}">${cat.getNomCategory()}</option>
+					
+					</c:forEach>
+</select>
+
+
+
+
