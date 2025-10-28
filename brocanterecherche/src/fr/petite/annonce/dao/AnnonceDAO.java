@@ -14,8 +14,8 @@ public class AnnonceDAO
 {
 	
 /**
- * *methode qui permet de fermer tous les paramétres de la connexion à la base de données une fois la 
- *requéte exécutée et cela pour éviter d'avoir des problémes en cas de connexions multiples 
+ * *methode qui permet de fermer tous les paramÃ©tres de la connexion Ã  la base de donnÃ©es une fois la 
+ *requÃ©te exÃ©cutÃ©e et cela pour Ã©viter d'avoir des problÃ©mes en cas de connexions multiples 
  * @param stmt
  * @param currentCon
  * @param rs
@@ -46,25 +46,25 @@ private static void closeInstances(Statement stmt, Connection currentCon,ResultS
       }
 }   
 	/**
-	 * methode qui retourne la liste de catégories présentes dans la table Category de la base de données
+	 * methode qui retourne la liste de catÃ©gories prÃ©sentes dans la table Category de la base de donnÃ©es
 	 * @return
 	 */
 
    public static List<Category> findAllCategory() {
-	  //creer une liste de catégories  
+	  //creer une liste de catÃ©gories  
 	  List<Category> categories= new ArrayList<Category>();
       //preparer des objets pour la connexion 
       Statement stmt = null;   
       Connection currentCon = null;
       ResultSet rs = null;    
-      //introduire une requéte qui sélectionne toutes les catégories de la table catégorie 
+      //introduire une requÃ©te qui sÃ©lectionne toutes les catÃ©gories de la table catÃ©gorie 
       String searchQuery = "select * from categorie";
       
     System.out.println("Query: "+searchQuery);
       
    try
    {
-      //connection à la base de données 
+      //connection Ã  la base de donnÃ©es 
       currentCon = ConnectionManager.getConnection();
       stmt=currentCon.createStatement();
       rs = stmt.executeQuery(searchQuery);
@@ -84,7 +84,7 @@ private static void closeInstances(Statement stmt, Connection currentCon,ResultS
       System.out.println("Log In failed: An Exception has occurred! " + ex);
    }
       
-   //fermer les paramètres de connexion à la base de données 
+      String insertQuery ="insert into categorie (nom_categorie)  values ('"+cat.getNomCategory()+ "')";
    finally
    {
       closeInstances(stmt, currentCon, rs);
@@ -96,13 +96,13 @@ return categories;
 
    
    /**
-    *  methode qui permet d'exécuter des requétes d'insertion d'une nouvelle catégorie dans la table Category
+    *  methode qui permet d'exÃ©cuter des requÃ©tes d'insertion d'une nouvelle catÃ©gorie dans la table Category
     * @param cat
     * @return
     */
   public static int  addCategory(Category cat) {
 	   
-      //preparer les objets de la connexion à la base de données 
+      //preparer les objets de la connexion Ã  la base de donnÃ©es 
       Statement stmt = null;   
       Connection currentCon = null;
       ResultSet rs = null;    
@@ -113,7 +113,7 @@ return categories;
       
    try
    {
-      //établir une connexion à la base de données
+      //Ã©tablir une connexion Ã  la base de donnÃ©es
       currentCon = ConnectionManager.getConnection();
       stmt=currentCon.createStatement();
       callBack= stmt.executeUpdate(insertQuery);
@@ -124,7 +124,7 @@ return categories;
       System.out.println("Log In failed: An Exception has occurred! " + ex);
    }
       
-   //fermer les paramétres de la connexion 
+   //fermer les paramÃ©tres de la connexion 
    finally
    {
       closeInstances(stmt, currentCon, rs);
@@ -137,13 +137,13 @@ return categories;
   
   
   /**
-   *  méthode qui permet d'ajouter une nouvelle annonce dans la table Annonce de notre DB
+   *  mÃ©thode qui permet d'ajouter une nouvelle annonce dans la table Annonce de notre DB
    * @param annonce
    * @return
    */
  public static int  addAnnonce(Annonce annonce) {
 	   
-     //preparer les paramétres de connexion à la base de données
+     //preparer les paramÃ©tres de connexion Ã  la base de donnÃ©es
 	 PreparedStatement statement = null; 
 	 Connection currentCon = null;
      ResultSet rs = null;    
@@ -153,7 +153,7 @@ return categories;
    System.out.println("Query: "+insertQuery);  
   try
   {
-     //connexion à la base de données
+     //connexion Ã  la base de donnÃ©es
      currentCon = ConnectionManager.getConnection();
     	statement = currentCon.prepareStatement(insertQuery);
 		statement.setString(1, annonce.getTitre());
@@ -170,7 +170,7 @@ return categories;
      System.out.println("Log In failed: An Exception has occurred! " + ex);
   }
      
-  //fermer les paramétres de la connexion à la base de données 
+  //fermer les paramÃ©tres de la connexion Ã  la base de donnÃ©es 
   finally
   {
 	  closeInstances(statement, currentCon, rs);
@@ -181,13 +181,13 @@ return categories;
   }
  
 /**
- * méthode qui permet de récupérer la lise de toutes les annonces de la table Annonce de notre DB
+ * mÃ©thode qui permet de rÃ©cupÃ©rer la lise de toutes les annonces de la table Annonce de notre DB
  * @return
  */
  public static  List<Annonce> findAllAnnonces() {
 	   
 	List<Annonce> annonces= new ArrayList<Annonce>();
-    //preparer les objets pour la connexion à la base de données 
+    //preparer les objets pour la connexion Ã  la base de donnÃ©es 
     Statement stmt = null;  
     Connection currentCon = null;
     ResultSet rs = null;    
@@ -197,7 +197,7 @@ return categories;
     
  try
  {
-    //connexion à la base de données
+    //connexion Ã  la base de donnÃ©es
     currentCon = ConnectionManager.getConnection();
     stmt=currentCon.createStatement();
     rs = stmt.executeQuery(searchQuery);
@@ -218,7 +218,7 @@ return categories;
  {
     System.out.println("Log In failed: An Exception has occurred! " + ex);
  }
- // fermer les paramétres de connexion à la DB aprés l'exécution de la requéte   
+ // fermer les paramÃ©tres de connexion Ã  la DB aprÃ©s l'exÃ©cution de la requÃ©te   
  finally
  {
     closeInstances(stmt, currentCon, rs);
@@ -229,7 +229,7 @@ return annonces;
  }
 
  /**
-  *  méthode qui permet de rechercher une annonce selon la catégorie et un texte qui apparait dans son titre ou sa 
+  if (category != null && !category.trim().isEmpty()){
   * description
   * @param category
   * @param text
@@ -278,7 +278,7 @@ catch (Exception ex)
   System.out.println("Log In failed: An Exception has occurred! " + ex);
 }
   
-// fermer les paramétres de connexion à la DB
+// fermer les paramÃ©tres de connexion Ã  la DB
 finally
 {
   closeInstances(stmt, currentCon, rs);
@@ -289,14 +289,14 @@ return annonces;
 }
  
 /**
- * méthode qui permet de trouver une annonce selon l'identifiant
+ * mÃ©thode qui permet de trouver une annonce selon l'identifiant
  * @param id
  * @return
  */
  public static  Annonce findAnnoncesById(String id) {
 	   
   Annonce annonce=new Annonce();
-  //preparer les objets de la connexion à la base de données
+  //preparer les objets de la connexion Ã  la base de donnÃ©es
   Statement stmt = null;   
   Connection currentCon = null;
   ResultSet rs = null;    
@@ -305,13 +305,13 @@ System.out.println("Query: "+searchQuery);
   
 try
 {
-  //connexion à la DB
+  //connexion Ã  la DB
   currentCon = ConnectionManager.getConnection();
   stmt=currentCon.createStatement();
   rs = stmt.executeQuery(searchQuery);
   if(!rs.next()) {
       System.out.println("Sorry, could not find that Annonce. ");
-  } else { // compléter les attributs de annonce avec les résultats correspondant à la requéte effectuée
+  } else { // complÃ©ter les attributs de annonce avec les rÃ©sultats correspondant Ã  la requÃ©te effectuÃ©e
       annonce.setIdAnnonce(rs.getInt("annonce_id"));
 		annonce.setTitre( rs.getString("titre"));
 		annonce.setDescription( rs.getString("description"));
@@ -327,18 +327,18 @@ catch (Exception ex)
   System.out.println("Log In failed: An Exception has occurred! " + ex);
 }
   
-//fermer les paramétres de connexion à la DB
+//fermer les paramÃ©tres de connexion Ã  la DB
 finally
 {
   closeInstances(stmt, currentCon, rs);
 }
-// l'identifiant est unique donc le résultat de la requéte est au plus une seule annonce
+// l'identifiant est unique donc le rÃ©sultat de la requÃ©te est au plus une seule annonce
 return annonce;
 
 }   
  
  /**
-  *  methode qui supprime une annonce en fonction de l'identifiant donnée en parammétre
+  *  methode qui supprime une annonce en fonction de l'identifiant donnÃ©e en parammÃ©tre
   * @param id
   * @return
   */
@@ -388,8 +388,8 @@ return callBack;
 }
 
  /**
-  * methode qui retourne les annonces que l'utilisateur dont l'identifiant est compteId donnï¿½ en argument
-  * on l'utilisera pour afficher les annonces que l'utilisateur a lui mï¿½me crï¿½e
+  * methode qui retourne les annonces que l'utilisateur dont l'identifiant est compteId donnÃ¯Â¿Â½ en argument
+  * on l'utilisera pour afficher les annonces que l'utilisateur a lui mÃ¯Â¿Â½me crÃ¯Â¿Â½e
   * @param compteId
   * @return
   */
@@ -408,7 +408,7 @@ return callBack;
 	    
 	 try
 	 {
-	    //connexion ï¿½ la DB
+	    //connexion Ã¯Â¿Â½ la DB
 	    currentCon = ConnectionManager.getConnection();
 	    stmt=currentCon.createStatement();
 	    rs = stmt.executeQuery(searchQuery);

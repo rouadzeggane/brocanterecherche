@@ -20,10 +20,17 @@ public class ConnectionManager {
         // Class.forName("com.mysql.jdbc.Driver");
          
          try
-         {      
-        	  Properties prop = new Properties();
-              InputStream inputStream = ConnectionManager.class.getClassLoader().getResourceAsStream("/db.properties");
-              prop.load(inputStream);
+         {
+                  Properties prop = new Properties();
+              InputStream inputStream = ConnectionManager.class.getClassLoader().getResourceAsStream("db.properties");
+              if (inputStream == null) {
+                  throw new IOException("db.properties introuvable dans le classpath");
+              }
+              try {
+                  prop.load(inputStream);
+              } finally {
+                  inputStream.close();
+              }
               String driver = prop.getProperty("driver");
               String url = prop.getProperty("url");
               String user = prop.getProperty("user");
@@ -31,9 +38,9 @@ public class ConnectionManager {
               Class.forName(driver);
             //con = DriverManager.getConnection(url,"root","Mahiou641992");
               con = DriverManager.getConnection(url,user,password);
-                                     
+
          }
-         
+
          catch (Exception ex)
          {
             ex.printStackTrace();
@@ -51,8 +58,15 @@ public class ConnectionManager {
        else {
            try {
                Properties prop = new Properties();
-               InputStream inputStream = ConnectionManager.class.getClassLoader().getResourceAsStream("/db.properties");
-               prop.load(inputStream);
+               InputStream inputStream = ConnectionManager.class.getClassLoader().getResourceAsStream("db.properties");
+               if (inputStream == null) {
+                   throw new IOException("db.properties introuvable dans le classpath");
+               }
+               try {
+                   prop.load(inputStream);
+               } finally {
+                   inputStream.close();
+               }
                String driver = prop.getProperty("driver");
                String url = prop.getProperty("url");
                String user = prop.getProperty("user");
